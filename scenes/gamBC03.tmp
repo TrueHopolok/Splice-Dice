@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cilen8w6vclmm"]
+
+[ext_resource type="Script" path="res://scripts/game_scene.gd" id="1_bgs4x"]
+[ext_resource type="PackedScene" uid="uid://myxdrorubqt" path="res://scenes/field.tscn" id="3_vp5kx"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_bgs4x")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -1920
+limit_top = -1080
+limit_right = 1920
+limit_bottom = 1080
+
+[node name="Field1" parent="." instance=ExtResource("3_vp5kx")]
+
+[node name="Field2" parent="." instance=ExtResource("3_vp5kx")]
+
+[node name="Field3" parent="." instance=ExtResource("3_vp5kx")]
+
+[node name="Field4" parent="." instance=ExtResource("3_vp5kx")]
+
+[node name="Field5" parent="." instance=ExtResource("3_vp5kx")]
+
+[node name="Field6" parent="." instance=ExtResource("3_vp5kx")]

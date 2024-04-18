@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://myxdrorubqt"]
+
+[ext_resource type="Script" path="res://scripts/field.gd" id="1_b4i20"]
+[ext_resource type="Texture2D" uid="uid://bkf5d5gkvluar" path="res://icon.svg" id="1_iwseo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkpyl"]
+size = Vector2(128, 128)
+
+[node name="Field" type="StaticBody2D"]
+script = ExtResource("1_b4i20")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jkpyl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.98023e-08, 0)
+texture = ExtResource("1_iwseo")
