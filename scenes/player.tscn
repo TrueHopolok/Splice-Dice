@@ -1,21 +1,21 @@
 [gd_scene load_steps=3 format=3 uid="uid://co7s45y72jdcc"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1jgll"]
-[ext_resource type="PackedScene" uid="uid://cwyxpc2jfjxx0" path="res://scenes/cube.tscn" id="2_nx3wk"]
+[ext_resource type="PackedScene" uid="uid://cwyxpc2jfjxx0" path="res://scenes/dice.tscn" id="2_nx3wk"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_1jgll")
 
-[node name="Cube1" parent="." instance=ExtResource("2_nx3wk")]
+[node name="Dice1" parent="." instance=ExtResource("2_nx3wk")]
 position = Vector2(-96, 32)
 
-[node name="Cube2" parent="." instance=ExtResource("2_nx3wk")]
+[node name="Dice2" parent="." instance=ExtResource("2_nx3wk")]
 position = Vector2(-32, 32)
 
-[node name="Cube3" parent="." instance=ExtResource("2_nx3wk")]
+[node name="Dice3" parent="." instance=ExtResource("2_nx3wk")]
 position = Vector2(32, 32)
 
-[node name="Cube4" parent="." instance=ExtResource("2_nx3wk")]
+[node name="Dice4" parent="." instance=ExtResource("2_nx3wk")]
 position = Vector2(96, 32)
 
 [node name="Label" type="Label" parent="."]

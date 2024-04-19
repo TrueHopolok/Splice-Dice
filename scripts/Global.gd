@@ -2,7 +2,7 @@ extends Node
 
 signal timeout(name)
 
-var player_amount = 6
+var player_amount = 2
 var requests = []
 
 func _process(delta):

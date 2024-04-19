@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cwyxpc2jfjxx0"]
 
-[ext_resource type="Script" path="res://scripts/cube.gd" id="1_a0do5"]
+[ext_resource type="Script" path="res://scripts/dice.gd" id="1_2igcj"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_x06s7"]
 load_path = "res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex"
 
 [node name="Cube" type="Node2D"]
-script = ExtResource("1_a0do5")
+script = ExtResource("1_2igcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, 4.76837e-07)

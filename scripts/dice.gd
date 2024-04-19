@@ -16,6 +16,7 @@ var start_position = global_position
 var final_position = global_position
 
 func _ready():
+	# TODO:BG_COLOR = parent_color
 	Global.timeout.connect(_move_continue)
 	Global.timeout.connect(_roll_continue)
 
@@ -38,7 +39,7 @@ func _roll_continue(name):
 		roll_ended.emit(last_roll)
 		return
 	last_roll = rng.randi_range(1, 6)
-	# TODO:CHANGE SPRITE
+	# TODO:VALUE_SPRITE = sprites[last_roll-1]
 	Global.add_timer(str(get_path())+"roll", ROLL_TIME)
 
 func move(marker):
