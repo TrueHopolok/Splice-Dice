@@ -1,5 +1,7 @@
 extends Node2D
 
+var database : SQLite
+
 var fields = []
 var players = []
 var current_player = 0
@@ -17,8 +19,9 @@ func _ready():
 	for i in 6:
 		fields.append(get_node("Field"+str(i+1)))
 		fields[i].connect("selected", _move_selected)
-	print("DEBUG: "+get_name()+" players_amount = "+str(Global.player_amount))
-	move_start()
+	#print("DEBUG: "+get_name()+" players_amount = "+str(Global.player_amount))
+	#move_start()
+	gameover()
 
 func _move_end():
 	if players[current_player].disable():
@@ -30,43 +33,54 @@ func _move_end():
 	move_start()
 
 func _move_placed():
-	print("DEBUG: "+get_name()+" placed field")
+	#print("DEBUG: "+get_name()+" placed field")
 	current_field.clear_ended.disconnect(_move_placed)
 	_move_end()
 
 func _move_cleared():
-	print("DEBUG: "+get_name()+" cleared field")
+	#print("DEBUG: "+get_name()+" cleared field")
 	current_field.clear_ended.disconnect(_move_cleared)
-	_move_end()
-
-func _move_selected(field):
-	print("DEBUG: "+get_name()+" selected "+field.get_name())
-	current_field = field
-	for i in current_rolls:
-		fields[i-1].disable()
-	if current_field.current_dice != null:
-		current_field.clear_ended.connect(_move_cleared)
-		current_field.clear()
-		return
 	current_field.place_ended.connect(_move_placed)
 	current_field.place(players[current_player])
 
+func _move_selected(field):
+	#print("DEBUG: "+get_name()+" selected "+field.get_name())
+	current_field = field
+	for i in current_rolls:
+		fields[i-1].disable()
+	current_field.clear_ended.connect(_move_cleared)
+	current_field.clear()
+	
+
 func _move_rolled(rolls_result):
-	print("DEBUG: "+get_name()+" rolled "+str(rolls_result))
+	#print("DEBUG: "+get_name()+" rolled "+str(rolls_result))
 	current_rolls = rolls_result
 	for i in current_rolls:
 		fields[i-1].enable()	
 
+func _gameover_continue():
+	# TODO: SAVE GAME (db insert + encryption)
+	var winner_name = gameover_window.get_node("GameoverUI/Input").text
+	if winner_name == "":
+		winner_name = "Player"+str(current_player+1)
+	Global.database.insert_row("Games", { \
+		"winner" = winner_name.sha256_text(), \
+		"datetime" = Time.get_datetime_string_from_system().sha256_text(), \
+		"length" = str(moves_amount).sha256_text(), \
+	})
+	# TODO: LOAD MAINMENU (write MAINMENU)
+	get_tree().reload_current_scene()
+
 func move_start():
-	print("DEBUG: "+get_name()+" started Player"+str(current_player+1))
+	#print("DEBUG: "+get_name()+" started Player"+str(current_player+1))
 	moves_amount += 1
 	players[current_player].enable()
 
 func gameover():
-	print("DEBUG: "+get_name()+ \
-	"\n  winner = Player"+str(current_player+1)+\
-	"\n  moves_amount = "+str(moves_amount))
+	#print("DEBUG: "+get_name()+ \
+	#"\n  winner = Player"+str(current_player+1)+\
+	#"\n  moves_amount = "+str(moves_amount))
 	gameover_window.show()
-	# TODO: OPEN WINDOW (game result + name request) 
-	# TODO: SAVE GAME (db insert + encryption)
-	# TODO: LOAD MAINMENU (write MAINMENU)
+	gameover_window.get_node("GameoverUI/Info").text = \
+	"Winner is Player"+str(current_player+1)+"\nGame lasted "+str(moves_amount)+" moves"
+	gameover_window.get_node("GameoverUI/Button").pressed.connect(_gameover_continue)

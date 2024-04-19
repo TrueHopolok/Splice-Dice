@@ -2,8 +2,14 @@ extends Node
 
 signal timeout(name)
 
+var database : SQLite
 var player_amount = 2
 var requests = []
+
+func _ready():
+	database = SQLite.new()
+	database.path = "db/games_history.db"
+	database.open_db()
 
 func _process(delta):
 	var i = 0

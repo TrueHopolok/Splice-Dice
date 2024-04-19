@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_mua8r"]
 [ext_resource type="PackedScene" uid="uid://myxdrorubqt" path="res://scenes/field.tscn" id="2_yjiop"]
 [ext_resource type="PackedScene" uid="uid://co7s45y72jdcc" path="res://scenes/player.tscn" id="3_xweqx"]
-[ext_resource type="PackedScene" uid="uid://tbe3kcpt83mi" path="res://scenes/popout.tscn" id="4_5odat"]
+[ext_resource type="PackedScene" uid="uid://tbe3kcpt83mi" path="res://scenes/gameoverUI.tscn" id="4_5odat"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_mua8r")
@@ -56,4 +56,4 @@ initial_position = 1
 size = Vector2i(600, 400)
 always_on_top = true
 
-[node name="Gameover" parent="Window" instance=ExtResource("4_5odat")]
+[node name="GameoverUI" parent="Window" instance=ExtResource("4_5odat")]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://tbe3kcpt83mi"]
 
-[node name="Gameover" type="Control"]
+[node name="GameoverUI" type="Control"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -14,7 +14,7 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextEdit" type="TextEdit" parent="."]
+[node name="Input" type="TextEdit" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
