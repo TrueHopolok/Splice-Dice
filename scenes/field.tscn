@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://myxdrorubqt"]
+[gd_scene load_steps=5 format=3 uid="uid://myxdrorubqt"]
 
 [ext_resource type="Script" path="res://scripts/field.gd" id="1_b4i20"]
-[ext_resource type="Texture2D" uid="uid://bkf5d5gkvluar" path="res://icon.svg" id="1_iwseo"]
+[ext_resource type="Texture2D" uid="uid://ds55evnxkkssu" path="res://pictures/Dice-Grey.png" id="2_75px4"]
+[ext_resource type="Texture2D" uid="uid://bxw6cj4igdaqi" path="res://pictures/Dice-1.png" id="3_ur7dj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jkpyl"]
 size = Vector2(192, 192)
@@ -13,9 +14,15 @@ script = ExtResource("1_b4i20")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_jkpyl")
 
-[node name="Border" type="Sprite2D" parent="."]
-position = Vector2(-4.76837e-06, 9.53674e-06)
-scale = Vector2(1.5, 1.5)
-texture = ExtResource("1_iwseo")
+[node name="BGSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(12, 12)
+texture = ExtResource("2_75px4")
+
+[node name="ValueSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-7.62939e-06, 2.86102e-06)
+scale = Vector2(12, 12)
+texture = ExtResource("3_ur7dj")
 
 [node name="Marker2D" type="Marker2D" parent="."]

@@ -4,15 +4,24 @@ signal clear_ended
 signal place_ended
 signal selected(emitter)
 
-@onready var collision = get_node("CollisionShape2D")
-@onready var dice_position = get_node("Marker2D")
+@export var field_value : int
+
+var bg_texture_standart : Texture2D
+var bg_sprite : Sprite2D
+var collision : CollisionShape2D
+var dice_position : Marker2D
 var detection = false
 var current_dice = null
 var current_player = null
 
 func _ready():
+	collision = get_node("CollisionShape2D")
+	dice_position = get_node("Marker2D")
+	bg_texture_standart = load("res://pictures/Dice-Grey.png")
+	bg_sprite = get_node("BGSprite")
+	bg_sprite.texture = bg_texture_standart
+	get_node("ValueSprite").texture = load("res://pictures/Dice-"+str(field_value)+".png")
 	collision.disabled = true
-	# TODO:BG_COLOR = STANDART_COLOR
 	# TODO:BORDER_COLOR = dark_gray
 
 func _mouse_enter():
@@ -32,14 +41,14 @@ func _mouse_exit():
 func _place_continue(dice):
 	current_player.place_ended.disconnect(_place_continue)
 	current_dice = dice
-	# TODO:BG_COLOR = PLAYER_COLOR
+	current_dice.hide()
+	bg_sprite.texture = load("res://pictures/Dice-"+current_player.color+".png")
 	place_ended.emit()
 
 func _clear_continue(dice):
 	current_player.place_ended.disconnect(_clear_continue)
 	current_player = null
 	current_dice = null
-	# TODO:BG_COLOR = STANDART_COLOR
 	clear_ended.emit()
 
 func enable():
@@ -53,11 +62,13 @@ func disable():
 func place(player):
 	current_player = player
 	current_player.place_ended.connect(_place_continue)
-	current_dice = player.place(dice_position)
+	current_dice = player.place(field_value, dice_position)
 
 func clear():
 	if current_dice == null:
 		clear_ended.emit()
 		return
+	bg_sprite.texture = bg_texture_standart
+	current_dice.show()
 	current_player.place_ended.connect(_clear_continue)
 	current_player.retrive(current_dice)

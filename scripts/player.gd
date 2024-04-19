@@ -3,6 +3,11 @@ extends Node2D
 signal place_ended(current_dice)
 signal enable_ended(rolls_result)
 
+@export var color : String
+
+var label_color_enabled = Color(1.0, 1.0, 0.0, 1.0)
+var label_color_disabled = Color(1.0, 1.0, 1.0, 1.0)
+var label : Label
 var taken = []
 var dices = []
 var markers = []
@@ -18,8 +23,9 @@ func _ready():
 		dices.append(get_node("Dice"+str(i+1)))
 		dices[i].move_ended.connect(_place_continue)
 		dices[i].roll_ended.connect(_enable_continue)
-	get_node("Label").text = get_name()
-	#TODO:BORDER_COLOR = dark_grey
+	label = get_node("Label")
+	label.text = get_name()
+	label.set("theme_override_colors/font_color", label_color_disabled)
 
 func _enable_continue(roll):
 	rolls_result.append(roll)
@@ -30,12 +36,8 @@ func _enable_continue(roll):
 func _place_continue():
 	place_ended.emit(dices[current_place])
 
-func playable():
-	#TODO:BORDER_COLOR = weak_yellow
-	pass
-
 func enable():
-	# TODO:BORDER_COLOR = full_yellow
+	label.set("theme_override_colors/font_color", label_color_enabled)
 	rolls_result = []
 	rolls_left = 0
 	for i in 4:
@@ -45,18 +47,20 @@ func enable():
 		dices[i].roll()
 
 func disable():
-	# TODO:BORDER_COLOR = weak_yellow
+	label.set("theme_override_colors/font_color", label_color_disabled)
 	return dices_left == 0
 
-func place(marker):
+func place(value, marker):
 	dices_left -= 1
 	for i in range(3, -1, -1):
 		if taken[i]:
 			continue
+		if dices[i].last_roll != value:
+			continue
 		current_place = i
 		taken[i] = true
 		dices[i].move(marker)
-		break
+		return
 
 func retrive(dice):
 	dices_left += 1

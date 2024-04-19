@@ -3,11 +3,12 @@ extends Node2D
 signal move_ended
 signal roll_ended(result)
 
-const MOVES_MAX = 60.0
-const ROLLS_MAX = 5.0
-const MOVE_TIME = 1.5 / MOVES_MAX
+const MOVES_MAX = 50.0
+const ROLLS_MAX = 6.0
+const MOVE_TIME = 1.0 / MOVES_MAX
 const ROLL_TIME = 1.5 / ROLLS_MAX
 
+var value_sprite : Sprite2D
 var rng = RandomNumberGenerator.new()
 var last_roll = -1
 var moves_left = -1
@@ -16,7 +17,9 @@ var start_position = global_position
 var final_position = global_position
 
 func _ready():
-	# TODO:BG_COLOR = parent_color
+	get_node("BGSprite").texture = load("res://pictures/Dice-"+get_parent().color+".png")
+	value_sprite = get_node("ValueSprite")
+	value_sprite.texture = Global.dice_textures_value[5]
 	Global.timeout.connect(_move_continue)
 	Global.timeout.connect(_roll_continue)
 
@@ -39,7 +42,7 @@ func _roll_continue(name):
 		roll_ended.emit(last_roll)
 		return
 	last_roll = rng.randi_range(1, 6)
-	# TODO:VALUE_SPRITE = sprites[last_roll-1]
+	value_sprite.texture = Global.dice_textures_value[last_roll-1]
 	Global.add_timer(str(get_path())+"roll", ROLL_TIME)
 
 func move(marker):

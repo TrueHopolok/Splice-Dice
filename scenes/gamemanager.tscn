@@ -1,12 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cilen8w6vclmm"]
+[gd_scene load_steps=6 format=3 uid="uid://cilen8w6vclmm"]
 
 [ext_resource type="Script" path="res://scripts/gamemanager.gd" id="1_mua8r"]
+[ext_resource type="Texture2D" uid="uid://bdx5cghjgongb" path="res://pictures/Background.jpg" id="2_kqtbk"]
 [ext_resource type="PackedScene" uid="uid://myxdrorubqt" path="res://scenes/field.tscn" id="2_yjiop"]
 [ext_resource type="PackedScene" uid="uid://co7s45y72jdcc" path="res://scenes/player.tscn" id="3_xweqx"]
 [ext_resource type="PackedScene" uid="uid://tbe3kcpt83mi" path="res://scenes/gameoverUI.tscn" id="4_5odat"]
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_mua8r")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.698039)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-3.99998, -7.62939e-06)
+scale = Vector2(2.29688, 2.29232)
+texture = ExtResource("2_kqtbk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = -1920
@@ -16,39 +25,51 @@ limit_bottom = 1080
 
 [node name="Field1" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(-192, -96)
+field_value = 1
 
 [node name="Field2" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(0, -96)
+field_value = 2
 
 [node name="Field3" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(192, -96)
+field_value = 3
 
 [node name="Field4" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(-192, 96)
+field_value = 4
 
 [node name="Field5" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(0, 96)
+field_value = 5
 
 [node name="Field6" parent="." instance=ExtResource("2_yjiop")]
 position = Vector2(192, 96)
+field_value = 6
 
 [node name="Player1" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(-448, 128)
+color = "White"
 
 [node name="Player2" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(-448, -32)
+color = "Red"
 
 [node name="Player3" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(-448, -192)
+color = "Blue"
 
 [node name="Player4" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(448, -192)
+color = "Green"
 
 [node name="Player5" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(448, -32)
+color = "Purple"
 
 [node name="Player6" parent="." instance=ExtResource("3_xweqx")]
 position = Vector2(448, 128)
+color = "Orange"
 
 [node name="Window" type="Window" parent="."]
 title = "Game results"

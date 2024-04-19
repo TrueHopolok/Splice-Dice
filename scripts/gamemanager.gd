@@ -1,7 +1,5 @@
 extends Node2D
 
-var database : SQLite
-
 var fields = []
 var players = []
 var current_player = 0
@@ -16,12 +14,13 @@ func _ready():
 	for i in Global.player_amount:
 		players.append(get_node("Player"+str(i+1)))
 		players[i].enable_ended.connect(_move_rolled)
+	for i in range(Global.player_amount, 6):
+		get_node("Player"+str(i+1)).hide()
 	for i in 6:
 		fields.append(get_node("Field"+str(i+1)))
 		fields[i].connect("selected", _move_selected)
 	#print("DEBUG: "+get_name()+" players_amount = "+str(Global.player_amount))
-	#move_start()
-	gameover()
+	move_start()
 
 func _move_end():
 	if players[current_player].disable():
@@ -50,7 +49,6 @@ func _move_selected(field):
 		fields[i-1].disable()
 	current_field.clear_ended.connect(_move_cleared)
 	current_field.clear()
-	
 
 func _move_rolled(rolls_result):
 	#print("DEBUG: "+get_name()+" rolled "+str(rolls_result))
@@ -59,7 +57,6 @@ func _move_rolled(rolls_result):
 		fields[i-1].enable()	
 
 func _gameover_continue():
-	# TODO: SAVE GAME (db insert + encryption)
 	var winner_name = gameover_window.get_node("GameoverUI/Input").text
 	if winner_name == "":
 		winner_name = "Player"+str(current_player+1)

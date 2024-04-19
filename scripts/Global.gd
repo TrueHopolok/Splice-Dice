@@ -3,13 +3,16 @@ extends Node
 signal timeout(name)
 
 var database : SQLite
-var player_amount = 2
+var player_amount = 6
 var requests = []
+var dice_textures_value = []
 
 func _ready():
 	database = SQLite.new()
 	database.path = "db/games_history.db"
 	database.open_db()
+	for i in range(1, 7):
+		dice_textures_value.append(load("res://pictures/Dice-"+str(i)+".png"))
 
 func _process(delta):
 	var i = 0
