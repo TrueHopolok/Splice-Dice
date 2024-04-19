@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://deevac45edto5"]
+
+[ext_resource type="Script" path="res://scripts/menudice.gd" id="1_fpy1c"]
+[ext_resource type="Texture2D" uid="uid://bpweklm1u1rng" path="res://pictures/Dice-White.png" id="1_wv3j3"]
+[ext_resource type="Texture2D" uid="uid://bni6nkc5qndg8" path="res://pictures/Dice-6.png" id="2_yjus5"]
+
+[node name="Menudice" type="Node2D"]
+script = ExtResource("1_fpy1c")
+
+[node name="BGSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = ExtResource("1_wv3j3")
+
+[node name="ValueSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture_repeat = 2
+scale = Vector2(4, 4)
+texture = ExtResource("2_yjus5")

@@ -22,11 +22,9 @@ func _ready():
 	bg_sprite.texture = bg_texture_standart
 	get_node("ValueSprite").texture = load("res://pictures/Dice-"+str(field_value)+".png")
 	collision.disabled = true
-	# TODO:BORDER_COLOR = dark_gray
 
 func _mouse_enter():
 	detection = true
-	# TODO:BORDER_COLOR = full_yellow
 
 func _input(event):
 	if detection and not collision.disabled:
@@ -36,7 +34,6 @@ func _input(event):
 
 func _mouse_exit():
 	detection = false
-	# TODO:BORDER_COLOR = weak_yellow
 
 func _place_continue(dice):
 	current_player.place_ended.disconnect(_place_continue)
@@ -53,11 +50,9 @@ func _clear_continue(dice):
 
 func enable():
 	collision.disabled = false
-	# TODO:BORDER_COLOR = weak_yellow
 	
 func disable():
 	collision.disabled = true
-	# TODO:BORDER_COLOR = dark_grey
 
 func place(player):
 	current_player = player

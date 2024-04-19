@@ -60,13 +60,13 @@ func _gameover_continue():
 	var winner_name = gameover_window.get_node("GameoverUI/Input").text
 	if winner_name == "":
 		winner_name = "Player"+str(current_player+1)
-	Global.database.insert_row("Games", { \
-		"winner" = winner_name.sha256_text(), \
-		"datetime" = Time.get_datetime_string_from_system().sha256_text(), \
-		"length" = str(moves_amount).sha256_text(), \
+	Global.database.insert_row("Games", { 
+		#TODO:ecryption
+		"winner" = winner_name, 
+		"datetime" = Time.get_datetime_string_from_system(), 
+		"length" = str(moves_amount),
 	})
-	# TODO: LOAD MAINMENU (write MAINMENU)
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
 
 func move_start():
 	#print("DEBUG: "+get_name()+" started Player"+str(current_player+1))

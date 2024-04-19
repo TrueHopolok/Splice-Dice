@@ -1,5 +1,107 @@
-[gd_scene format=3 uid="uid://coxq0swijed5x"]
+[gd_scene load_steps=4 format=3 uid="uid://coxq0swijed5x"]
+
+[ext_resource type="Texture2D" uid="uid://bdx5cghjgongb" path="res://pictures/Background.jpg" id="1_hriim"]
+[ext_resource type="Script" path="res://scripts/mainmenu.gd" id="1_uh5ui"]
+[ext_resource type="PackedScene" uid="uid://deevac45edto5" path="res://scenes/menudice.tscn" id="2_6pk6o"]
 
 [node name="Mainmenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uh5ui")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.698039)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-4, 0)
+scale = Vector2(2.29688, 2.29232)
+texture = ExtResource("1_hriim")
+
+[node name="TitleLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = -184.0
+offset_top = -244.0
+offset_right = 184.0
+offset_bottom = -180.0
+theme_override_font_sizes/font_size = 41
+text = "SPLICE & DICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = -128.0
+offset_top = -124.0
+offset_right = 101.0
+offset_bottom = 88.0
+scale = Vector2(1.11905, 1.05714)
+theme_override_constants/separation = 15
+alignment = 1
+
+[node name="PlayContainer" type="HSplitContainer" parent="VBoxContainer"]
+layout_mode = 2
+split_offset = 114
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/PlayContainer"]
+layout_mode = 2
+text = "Play"
+
+[node name="PlayersAmount" type="VBoxContainer" parent="VBoxContainer/PlayContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/PlayContainer/PlayersAmount"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 12
+text = "Players amount"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/PlayContainer/PlayersAmount"]
+layout_mode = 2
+item_count = 5
+selected = 0
+allow_reselect = true
+popup/item_0/text = "2"
+popup/item_0/id = 0
+popup/item_1/text = "3"
+popup/item_1/id = 1
+popup/item_2/text = "4"
+popup/item_2/id = 2
+popup/item_3/text = "5"
+popup/item_3/id = 3
+popup/item_4/text = "6"
+popup/item_4/id = 4
+
+[node name="GuideButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "How to play?"
+
+[node name="HistoryButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Games history"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Quit
+"
+
+[node name="Menudice" parent="." instance=ExtResource("2_6pk6o")]
+position = Vector2(-504, 252)
+
+[node name="Menudice2" parent="." instance=ExtResource("2_6pk6o")]
+position = Vector2(-336, 260)
+
+[node name="Menudice3" parent="." instance=ExtResource("2_6pk6o")]
+position = Vector2(232, 260)
+
+[node name="Menudice4" parent="." instance=ExtResource("2_6pk6o")]
+position = Vector2(488, 244)
+
+[node name="Menudice5" parent="." instance=ExtResource("2_6pk6o")]
+position = Vector2(-24, 268)

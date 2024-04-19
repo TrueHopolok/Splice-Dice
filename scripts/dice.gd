@@ -23,6 +23,7 @@ func _ready():
 	Global.timeout.connect(_move_continue)
 	Global.timeout.connect(_roll_continue)
 
+@warning_ignore("shadowed_variable_base_class")
 func _move_continue(name):
 	if name != str(get_path())+"move":
 		return
@@ -34,6 +35,7 @@ func _move_continue(name):
 	global_position = start_position + (final_position - start_position) * ((MOVES_MAX - moves_left) / MOVES_MAX)
 	Global.add_timer(str(get_path())+"move", MOVE_TIME)
 
+@warning_ignore("shadowed_variable_base_class")
 func _roll_continue(name):
 	if name != str(get_path())+"roll":
 		return

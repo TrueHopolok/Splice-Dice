@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8pam8w8qbc2f"]
+
+[ext_resource type="Script" path="res://scripts/historymenu.gd" id="1_3qiir"]
+[ext_resource type="Texture2D" uid="uid://bdx5cghjgongb" path="res://pictures/Background.jpg" id="1_81671"]
+
+[node name="Historymenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3qiir")
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.615686, 0.615686, 0.615686, 0.698039)
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(-4, 0)
+scale = Vector2(2.29688, 2.29232)
+texture = ExtResource("1_81671")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -560.0
+offset_top = -308.0
+offset_right = 560.0
+offset_bottom = 252.0
+color = Color(0.176471, 0.176471, 0.176471, 0.552941)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 1112.0
+offset_bottom = 552.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -560.0
+offset_top = 260.0
+offset_right = -472.0
+offset_bottom = 308.0
+text = "Back"
