@@ -23,6 +23,7 @@ scale = Vector2(2.29688, 2.29232)
 texture = ExtResource("1_5lwbp")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
 offset_left = -560.0
 offset_top = -308.0
 offset_right = 560.0
@@ -30,6 +31,7 @@ offset_bottom = 252.0
 color = Color(0.176471, 0.176471, 0.176471, 0.552941)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 1112.0
@@ -49,6 +51,7 @@ text = "GUIDE: HOW TO PLAY?
 "
 
 [node name="Button" type="Button" parent="."]
+layout_mode = 0
 offset_left = -560.0
 offset_top = 260.0
 offset_right = -472.0

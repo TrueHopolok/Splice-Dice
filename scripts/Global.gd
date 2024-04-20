@@ -2,6 +2,8 @@ extends Node
 
 signal timeout(name)
 
+var encryption_key = "SOMETOTALLYRANDOMSTUFF".to_utf8_buffer()
+
 var database : SQLite
 var player_amount = 6
 var requests = []
@@ -23,6 +25,12 @@ func _process(delta):
 			requests.remove_at(i)
 			continue
 		i += 1
+
+func xor(string):
+	var barray = string.to_utf8_buffer()
+	for i in len(barray):
+		barray[i] = (barray[i] ^ encryption_key[i % len(encryption_key)])
+	return barray.get_string_from_utf8()
 
 func add_timer(name, time):
 	requests.append([name, time])

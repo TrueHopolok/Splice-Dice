@@ -9,8 +9,14 @@ func _ready():
 		"ColorRect/RichTextLabel"
 	)
 	for game in games:
-		#TODO:decryption
-		label.text += "When happened = %s | Winner's name = %s | Moves amount = %s\n" % [game["datetime"], game["winner"], game["length"]]
+		label.text += "\
+When happened = %s | \
+Winner's name = %s | \
+Moves amount = %s\n" % [
+			Global.xor(game["datetime"]), 
+			Global.xor(game["winner"]), 
+			Global.xor(game["length"])
+		]
 	get_node(
 		"Button"
 	).pressed.connect(
