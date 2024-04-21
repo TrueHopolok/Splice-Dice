@@ -3,5 +3,5 @@ This game is for school project, but anyone can play it.
 
 To play the game:
   - Donwload whole project;
-  - Unzip "build.zip" into smae folder;
+  - Unzip "build.zip" into same folder;
   - Open "splice&Dice.exe" and start playing; 
