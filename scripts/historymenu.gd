@@ -13,9 +13,9 @@ func _ready():
 When happened = %s | \
 Winner's name = %s | \
 Moves amount = %s\n" % [
-			Global.xor(game["datetime"]), 
-			Global.xor(game["winner"]), 
-			Global.xor(game["length"])
+			Global.xor(game["datetime"]).get_string_from_utf8(), 
+			Global.xor(game["winner"]).get_string_from_utf8(), 
+			Global.xor(game["length"]).get_string_from_utf8()
 		]
 	get_node(
 		"Button"

@@ -26,11 +26,10 @@ func _process(delta):
 			continue
 		i += 1
 
-func xor(string):
-	var barray = string.to_utf8_buffer()
+func xor(barray):
 	for i in len(barray):
 		barray[i] = (barray[i] ^ encryption_key[i % len(encryption_key)])
-	return barray.get_string_from_utf8()
+	return barray
 
 func add_timer(name, time):
 	requests.append([name, time])

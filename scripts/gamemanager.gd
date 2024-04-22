@@ -61,9 +61,9 @@ func _gameover_continue():
 	if winner_name == "":
 		winner_name = "Player"+str(current_player+1)
 	Global.database.insert_row("Games", { 
-		"winner" = Global.xor(winner_name), 
-		"datetime" = Global.xor(Time.get_datetime_string_from_system()), 
-		"length" = Global.xor(str(moves_amount)),
+		"winner" = Global.xor(winner_name.to_utf8_buffer()), 
+		"datetime" = Global.xor(Time.get_datetime_string_from_system().to_utf8_buffer()), 
+		"length" = Global.xor(str(moves_amount).to_utf8_buffer()),
 	})
 	get_tree().change_scene_to_file("res://scenes/mainmenu.tscn")
 
